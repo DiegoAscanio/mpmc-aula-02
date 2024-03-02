@@ -77,10 +77,7 @@
     text-align: justify;
     font-size: 18px;
   }
-  section.lead h1 {
-    text-align: center;
-  }
-  section.lead h2 {
+  section.lead h1, h2, h3 {
     text-align: center;
   }
   
@@ -147,6 +144,34 @@
     display: block;
     margin: auto;
     width: 45%;
+  }
+
+  .mid-aligned-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .flex-container {
+    display: flex;
+  }
+
+  .column-container {
+    flex: 1;
+  }
+
+  .column-row-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .quarter-row {
+    flex: 1;
+  }
+
+  .three-quarter-row {
+    flex: 3;
   }
 
 </style>
@@ -259,7 +284,7 @@ CEFET-MG DECOMDV — Divinópolis, 2024
 
 - A programação do arduino é feita a partir de um computador conectado ao arduino pela porta USB, como mostrado na Figura 3.
 
-- Um aspecto muito importante das placas arduinos é a capacidade de serem expandidas através de *shields* (escudos, tradução literal) que são placas que se encaixam na placa principal e adicionam funcionalidades como GPS, Bluetooth, Ethernet, entre outros. A Figura 4 mostra um Arduino com um shield de Ethernet que possibilita sua conexão à internet.
+- Um aspecto muito importante das placas Arduino é a capacidade de serem expandidas através de *shields* (escudos, tradução literal) que são placas que se encaixam na placa principal e adicionam funcionalidades como GPS, Bluetooth, Ethernet, entre outros. A Figura 4 mostra um Arduino com um shield Ethernet que possibilita sua conexão à internet.
 
 </div>
 <div class="grid-50-50 small">
@@ -280,9 +305,136 @@ CEFET-MG DECOMDV — Divinópolis, 2024
 
 <figcaption style="text-align: center;">
 
-Figura 4 — Arduino extendido com um *shield* ethernet
+Figura 4 — Arduino extendido com um *shield* Ethernet
 
 </figcaption>
 </figure>
+</div>
+</div>
+
+
+---
+
+## Introdução ao Arduino — Microcontrolador ATmega328P
+
+<div class="regular">
+
+- De todos os componentes do Arduino, o mais importante é o microcontrolador.
+    - Ele é o cérebro do Arduino e é responsável por todas as operações.
+- Como dito anteriormente, existem vários modelos de Arduino, cada qual com um microcontrolador específico.
+    - Os adotados neste curso são os microcontroladores ATmega168 e ATmega328P, presente no Arduino UNO.
+    - A pinagem do microcontrolador ATmega328P é mostrada pela Figura 5, enquanto as características do microcontrolador são apresentadas a seguir:
+
+<!-- _class: lead -->
+### Principais características do ATmega328P
+
+<div class="grid-50-50">
+<div class="grid-element small">
+
+- CPU RISC de 8 bits;
+- Capacidade de processamento de 20 milhões de instruções por segundo (MIPS) em 20 MHz;
+- Memória Flash de programa de 32 KB;
+- Memória SRAM de 2 KB;
+- Memória EEPROM de 1 KB;
+- Programável no circuito;
+- 2 temporizadores/contadores de 8 bits;
+
+</div>
+<div class="grid-element">
+
+- 1 temporizador/contador de 16 bits;
+- 6 entradas analógicas (ADC) de 10 bits;
+- Contador de tempo real (RTC);
+- 23 pinos de entrada/saída digitais;
+- 6 canais PWM;
+- Comunicação UART, SPI e I2C;
+- Operação em 1,8 V a 5,5 V.
+
+</div>
+</div>
+
+</div>
+
+
+---
+
+## Introdução ao Arduino — Microcontrolador ATmega328P
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/pinagem-atmega328p.png)
+
+<figcaption class="regular" style="text-align: center;">Figura 5 — Pinagem do microcontrolador ATmega328P</figcaption>
+</figure>
+
+
+---
+
+## Introdução ao Arduino — Alimentação
+
+<div class="grid-50-50 regular">
+<div class="grid-element">
+
+- O arduino pode receber alimentação de duas formas: USB ou por uma fonte externa como ilustrado pela Figura 6.
+- Quando a alimentação é realizada por fonte externa, a tensão de alimentação deve ser de 7 a 12V.
+    - Reguladores de tensão internos do Arduino reduzem a tensão para os níveis lógicos necessários aos componentes (TTL ou CMOS).
+    - *Hoaxes* dizem que o Arduino aguenta até 20V, mas, não é bom pagar para ver.
+- O consumo total de corrente no Arduino não deve ultrapassar \\(500mA\\).
+- A comutação entre alimentação USB e externa é feita automaticamente pelo Arduino.
+
+</div>
+<div class="grid-element mid-aligned-container">
+<figure>
+
+<!-- _class: transparent -->
+![](./img/alimentacao-arduino.png)
+
+<figcaption style="text-align: center;">Figura 6 — Alimentação do Arduino.</figcaption>
+</figure>
+</div>
+</div>
+
+
+---
+
+## Introdução ao Arduino — Alimentação
+
+<div class="flex-container regular">
+<div class="column-container">
+
+- O Arduino também fornece conexões de alimentação para periféricos ou *shields* conectados a ele.
+    - A Figura 7 mostra a disposição destes conectores de alimentação no Arduino Uno.
+- Nestes conectores, o pino `IOREF` fornece uma tensão de referência para os *shields* e periféricos conectados ao Arduino.
+    - Assim, o *shield* ou periférico pode reconhecer se o nível lógico de tensão é CMOS (3.3V) ou TTL (5V).
+- O pino `RESET` é conectado ao botão de reset do Arduino e permite que periféricos ou *shields* conectados ao Arduino possam reiniciar o microcontrolador.
+- O pino `3.3V` fornece uma tensão de 3.3V para alimentar periféricos ou *shields* que operam em CMOS.
+- O pino `5V` fornece uma tensão de 5V para alimentar periféricos ou *shields* que operam em TTL.
+
+</div>
+<div class="column-container column-row-container">
+<div class="three-quarter-row">
+
+- Os pinos `GND` são conectados ao terra do Arduino e fornecem uma referência de tensão para os periféricos ou *shields* conectados.
+- O pino `VIN` permite alimentar o Arduino através de algum circuito externo, sem a nacessiade de utilizar a porta USB ou a fonte de alimentação do Arduino.
+    - Este pino também é conectado ao regulador de tensão do Arduino.
+    - Os níveis operacionais de tensão permanecem entre 7V e 12V.
+
+</div>
+<div class="quarter-row small">
+<figure>
+<div class="mid-aligned-container">
+
+<!-- _class: transparent -->
+![](./img/shield-power-connectors.png)
+
+</div>
+<figcaption style="text-align: center;">
+
+Figura 7 - Conectores de alimentação de *shields* e periféricos do Arduino Uno.
+
+</figcaption>
+</figure>
+</div>
 </div>
 </div>
