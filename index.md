@@ -473,3 +473,51 @@ Figura 7 - Conectores de alimentação de *shields* e periféricos do Arduino Un
 Figura 8 — Entradas e saídas do Arduino UNO com suas principais funções.
 </figcaption>
 </figure>
+
+
+---
+
+## Introdução ao Arduino — Ambiente de Desenvolvimento
+
+<div class="small">
+
+- Para se programar o Arduino são necessárias ferramentas de desenvolvimento apropriadas para tal.
+    - Existem diversas formas de se programar o Arduino, tais quais:
+        1. Plugins para configuração no VSCode;
+        2. Interfaces de linha de comando para compilação e upload de código;
+        3. O ambiente de desenvolvimento integrado oficial do Arduino, o Arduino IDE, ilustrado pelas Figuras 10 e 11.
+
+<div class="flex-container footnotesize">
+<div class="column-container">
+<figure style="padding: 10px;">
+
+![](./img/arduino-ide-loading.png)
+
+<figcaption style="text-align: center;">Figura 10 — Tela de Carregamento do Arduino IDE</figcaption>
+</figure>
+</div>
+<div class="column-container">
+<figure style="padding: 10px;">
+
+![](./img/arduino-ide-loaded.png)
+
+<figcaption style="text-align: center;">Figura 11 — Arduino IDE carregado em sua tela inicial</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+---
+
+## Introdução ao Arduino — Ambiente de Desenvolvimento
+
+<div class="normal">
+
+- É recomendado na disciplina utilizar a IDE oficial do Arduino para a programação dos microcontroladores. Esta IDE está disponível no container de aulas do professor da disciplina. 
+    - Utilizar este container permite garantir que todos os alunos estão utilizando a mesma versão do ambiente de desenvolvimento, evitando problemas de compatibilidade entre diferentes versões do software e portanto, garantindo a reprodutibilidade dos experimentos.
+        - As instruções apropriadas para execução deste container estão disponíveis em seu [repositório](https://github.com/diegoascanio/container-aulas-cefetmg).
+    - Caso o aluno deseje apenas instalar a IDE do Arduino em seu computador, acesse o [site oficial](https://www.arduino.cc/en/software) e siga as instruções de instalação para o seu sistema operacional.
+    - Também é facultado ao aluno utilizar outras ferramentas de sua preferência, entretanto, não é garantido nenhum suporte para problemas de compatibilidade que possam surgir.
+
+</div>
