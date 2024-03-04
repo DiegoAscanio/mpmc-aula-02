@@ -763,3 +763,74 @@ void loop() {
 </div>
 </div>
 </div>
+
+
+---
+
+## Introdução ao Arduino — Wokwi
+
+<div class="small">
+
+<!-- _class: transparent -->
+![centered-img](./img/wokwi.png)
+
+- "Wokwi é um simulador de eletrônica online. Você pode usá-lo para simular Arduino, ESP32 e muitas outras placas, componentes e sensores populares." [(LTD., 2024)](#referencias)
+
+### Porque usar Wokwi?
+
+- Não é necessário se preocupar com a aquisição de componentes ou downloads de softwares grandes, pois, o Wokwi apresenta os principiais recursos para simular projetos com microcontroladores.
+
+- A preocupação com danificação de componentes é eliminada, pois, o Wokwi é um simulador online e não é possível queimar *hardware* virtual.
+
+- *Hardware* virtual ilimitado com possibilidade de criação de seus próprios componentes.
+
+- Separação de papéis entre *hardware* e *software* para facilitar a compreensão do funcionamento do sistema.
+
+- Comunidade ativa, amigável com bom suporte para dúvidas.
+
+Maiores informações disponíveis em [https://docs.wokwi.com/pt-BR/](https://docs.wokwi.com/pt-BR/).
+
+</div>
+
+
+---
+
+## Simulação de Um Circuito no Wokwi
+
+<div class="regular" style="text-align: center;">
+Circuito com entradas e saídas digitais com desvios condicionais para controle das saídas.
+</div>
+<iframe src="https://wokwi.com/projects/391440053861806081" width="100%" height="100%"></iframe>
+
+
+---
+
+## Simulação de Um Circuito no Wokwi
+
+<div class="regular" style="text-align: center;">
+Jogo Simon Says (GENIUS Estrela) simulado com Arduino UNO no Wokwi.
+</div>
+<iframe src="https://wokwi.com/projects/328451800839488084" width="100%" height="100%"></iframe>
+
+
+---
+
+<!-- _class: lead -->
+# Entradas e Saídas Digitais
+## Estruturas de *Hardware* para fazer as conexões de periféricos de entrada e saída digitais no Arduino
+
+
+---
+
+## Referências Bibliográficas
+
+<a name="referencias"></a>
+
+1. [KERSCHBAUMER, R. Programação Aplicada a Microcontroladores. Luzerna: IFC - Instituto Federal de Educação, Ciência e Tecnologia Catarinense, 2018. ](https://professor.luzerna.ifc.edu.br/ricardo-kerschbaumer/wp-content/uploads/sites/43/2019/11/Apostila-Programa%C3%A7%C3%A3o-Aplicada-a-Microcontroladores-2018-2.pdf)
+
+2. LTD., C. Bem vindo ao Wokwi! | Wokwi Docs. Disponível em: [https://docs.wokwi.com/pt-BR/](https://docs.wokwi.com/pt-BR/). Acesso em: 4 mar. 2024. 
+
+
+---
+
+![centered-img](./img/thatsallfolks.webp)
