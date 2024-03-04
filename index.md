@@ -616,16 +616,150 @@ Figura 8 — Entradas e saídas do Arduino UNO com suas principais funções.
 <figure>
 
 <!-- _class: transparent -->
-![img-grid-75](./img/select-nano-168.png)
+![](./img/select-nano-168.png)
 
 <figcaption style="text-align: center;">Figura 15 - Seleção do Arduino Nano</figcaption>
 </figure>
 <figure>
 
 <!-- _class: transparent -->
-![img-grid-75](./img/nano-168-processor.png)
+![](./img/nano-168-processor.png)
 
 <figcaption style="text-align: center;">Figura 16 - Seleção do Processador ATmega168</figcaption>
 </figure>
+</div>
+</div>
+
+
+---
+
+## Introdução ao Arduino — Uso da IDE
+### Pré requisitos
+
+<div class="grid-50-50">
+<div class="grid-element normal">
+
+8. Agora é necessário selecionar a porta USB que o Arduino está conectado. Para isso, vá em `Tools -> Port` e clique na porta onde o Arduino está conectado— `/dev/ttyUSB0` ou `/dev/ttyACM0` no Linux — como mostra a Figura 17.
+
+</div>
+<div class="grid-element footnotesize">
+<figure>
+
+<!-- _class: transparent -->
+![](./img/arduino-port.png)
+
+<figcaption style="text-align: center;">Figura 17 - Seleção da porta do Arduino</figcaption>
+</figure>
+</div>
+</div>
+
+
+---
+
+## Introdução ao Arduino — Uso da IDE
+### Carregando um programa de exemplo no Arduino
+
+<div class="grid-50-50">
+<div class="grid-element regular">
+
+Agora que você já configurou a IDE do Arduino, vamos carregar um programa de exemplo no Arduino. Para isso, siga os passos a seguir:
+
+1. Clique no menu `File -> Examples -> 01.Basics -> Blink` para abrir o programa de exemplo Blink, como mostrado na Figura 18.
+2. Uma nova janela será aberta com o código do programa Blink. Agora, clique no botão `Upload` para carregar o programa no Arduino, como mostrado pela Figura 19.
+3. Aguarde o término do carregamento do programa. Se não houver nenhum erro de configuração ou edição acidental de código, o LED do Arduino deverá piscar a cada segundo.
+
+</div>
+<div class="grid-element footnotesize">
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/blink.png)
+
+<figcaption style="text-align: center;">Figura 18 — Localização do exemplo Blink</figcaption>
+</figure>
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/upload.png)
+
+<figcaption style="text-align: center;">
+
+Figura 19 — Botão `Upload`
+
+</figcaption>
+</figure>
+
+</div>
+</div>
+
+
+---
+
+
+## Introdução ao Arduino — Estrutura básica de um programa
+
+<style scoped>
+#codigo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  text-align: left; /* Para garantir alinhamento do texto à esquerda */
+}
+
+#codigo-container pre,
+#codigo-container code {
+  width: 100%; /* Ocupa a largura total da `div` */
+  max-width: 650px; /* Um valor máximo de largura pode ser útil */
+  font-size: 16px; /* Ou qualquer tamanho que prefira */
+  padding: 20px; /* Ajuste conforme necessário */
+  box-sizing: border-box; /* Inclui o padding no cálculo da largura */
+}
+</style>
+
+<div class="flex-container">
+<div class="column-container footnotesize">
+
+A estrutura básica de um programa Arduino, também conhecida como *sketch*, é composta por duas funções principais: `setup()` e `loop()`. Aqui está um breve resumo de cada uma:
+
+1. **Função `setup()`**:
+    - É chamada uma única vez quando o programa inicia.
+    - Utilizada para inicializar configurações ou preparar o estado inicial do programa.
+    - Comum para configurar a velocidade de comunicação serial, definir modos de pinos (entrada, saída), iniciar bibliotecas, etc.
+
+2. **Função `loop()`**:
+    - É chamada repetidamente enquanto o Arduino estiver ligado após a execução da função `setup()`.
+    - Este é o coração do programa, onde a maior parte do código é executada.
+    - Utilizada para ler sensores, controlar atuadores, atualizar o estado do programa, etc.
+
+Além dessas duas funções, um programa Arduino pode conter outras funções e variáveis globais, de acordo com a necessidade de cada projeto.
+
+Um exemplo simples de um programa Arduino que pisca um LED a cada segundo é mostrado ao lado:
+
+</div>
+<div class="column-container">
+<div id="codigo-container">
+
+```c
+
+// Define o pino do LED
+int ledPin = 13;
+
+// A função setup() é chamada uma vez quando o sketch inicia
+void setup() {
+  // Configura o pino do LED como saída
+  pinMode(ledPin, OUTPUT);
+}
+
+// A função loop() é chamada repetidamente
+void loop() {
+  digitalWrite(ledPin, HIGH);   // Acende o LED
+  delay(1000);                  // Espera por um segundo
+  digitalWrite(ledPin, LOW);    // Apaga o LED
+  delay(1000);                  // Espera por um segundo
+}
+```
+
+</div>
 </div>
 </div>
