@@ -159,6 +159,7 @@
 
   .column-container {
     flex: 1;
+    padding: 5px;
   }
 
   .column-row-container {
@@ -209,7 +210,7 @@ CEFET-MG DECOMDV — Divinópolis, 2024
 
 ## Roteiro
 
-<div class="regular">
+<div class="regular" markdown="1">
 
 1. Introdução ao Arduino;
     1. ATMega328P;
@@ -818,6 +819,222 @@ Jogo Simon Says (GENIUS Estrela) simulado com Arduino UNO no Wokwi.
 <!-- _class: lead -->
 # Entradas e Saídas Digitais
 ## Estruturas de *Hardware* para fazer as conexões de periféricos de entrada e saída digitais no Arduino
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<style scoped>
+    .figure-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .image-caption {
+        text-align: center;
+        margin: 10px;
+    }
+    img {
+        height: auto;
+    }
+    .image-caption > img {
+        width: auto;
+    }
+</style>
+<div class="small">
+
+Serão apresentados os circuitos necessários para conectar periféricos de entrada e saída digitais ao microcontrolador, pois, ao lidar com periféricos distintos, cada qual possui suas especificações que demandam adaptações para seu correto funcionamento.
+
+### Entradas Digitais no Arduino
+
+- Preparadas para receber sinais digitais em nível lógico TTL (0V a 5V).
+    - Nem todos os circuitos digitais operam com nível lógico TTL, assim, são necessárias algumas adaptações.
+    - É impossível abordar todos os tipos de entrada digital existentes, pois, muitos ainda nem foram inventados. Entretanto, ao abordar os mais comuns — botões ou chaves — é possível generalizar para compreender os demais. As generalizações que servem para os demais são mostradas pelos dois circuitos da Figura 20.
+
+<figure>
+<div class="figure-container">
+<div class="image-caption">
+
+<!-- _class: transparent -->
+![](./img/NO-contact.png)
+
+<figcaption>(a) Modelo para ligação de um contato (chave, botão) normalmente aberto no Arduino</figcaption>
+</div>
+<div class="image-caption">
+
+<!-- _class: transparent -->
+![](./img/NC-contact.png)
+
+<figcaption>(a) Modelo para ligação de um contato (chave, botão) normalmente fechado no Arduino</figcaption>
+</div>
+</div>
+<figcaption style="text-align: center;">Figura 20 — Modelos genéricos de conexão para botões e / ou chaves no Arduino</figcaption>
+</figure>
+
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="small">
+
+### Entradas Digitais no Arduino
+
+- Porque os modelos da Figura 20 generalizam para os demais tipos de chave?
+    - Na aula passada vimos os transistores que são como chaves digitais, ou analogamente, como torneiras que controlam o fluxo de água, como mostra a Figura 21.
+    - Se os transistores são chaves digitais, logo, quaisquer outros tipos de contatos podem ser modelados por eles. Destarte, as generalizações implicadas pela Figura 20.
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/torneira.png)
+
+<figcaption style="text-align: center;">Figura 21 — Funcionamento da torneira onde seu registro controla o fluxo da água que sai do cano para a pia</figcaption>
+</figure>
+
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="small">
+
+### Entradas Digitais no Arduino
+
+<div class="flex-container">
+<div class="column-container">
+
+Retomando as discussões sobre a Figura 20, temos na Figura 20 (a) a representação de um contato normalmente aberto:
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/NO-contact.png)
+
+<figcaption class="scriptsize" style="text-align: center;">Figura 20 (a)</figcaption>
+</figure>
+
+Esse contato recebe esse nome porque seu estado padrão é em nível lógico baixo (0V) que representa a alta impedância, o estado de desligado. Quando acionado, ele fecha o circuito e passa a conduzir, representando o nível lógico alto (5V) que representa o estado de ligado.
+
+</div>
+<div class="column-container">
+
+Já na Figura 20 (b) temos a representação de um contato normalmente fechado, que recebe este nome porquê seu estado padrão é em nível lógico alto (5V) que representa o estado de ligado. Quando acionado, ele abre o circuito e passa a não conduzir, representando o nível lógico baixo (0V) que representa o estado de desligado.
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/NC-contact.png)
+
+<figcaption class="scriptsize" style="text-align: center;">Figura 20 (b)</figcaption>
+</figure>
+
+Porquê a entrada Pin 0 passa a não receber corrente? Porquê quando o botão é fechado, a corrente elétrica encontra um caminho sem impedância para circular e não passa em nenhuma fração pelo resistor de \\(1 k\\Omega\\) e, consequentemente, na entrada Pin 0.
+
+</div>
+</div>
+
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="small">
+
+### Entradas Digitais no Arduino
+
+A comutação de chaves mecânicas pode ocasionar o aparecimento de ruídos que fazem com que o microcontrolador interprete erroneamente os sinais de entrada. Para contornar este problema podem ser adotadas algumas técnicas:
+
+- ***Debounce***: consiste em aguardar um tempo após a detecção de uma transição de estado para verificar se a chave continua no mesmo estado. Se sim, a transição é considerada válida. Se não, a transição é ignorada. O tempo de espera pode ser implementado por meio de um temporizador ou por meio de um laço que aguarde um tempo fixo.
+- ***Pull-up e Pull-down***: consiste em conectar um resistor de valor elevado entre a entrada digital e a alimentação (pull-up) ou entre a entrada digital e o terra (pull-down). 
+- **Filtro Capacitivo**: consiste em conectar um capacitor entre a entrada digital e o terra. O capacitor armazena energia e, quando a chave é acionada, a energia armazenada no capacitor é transferida para a entrada digital, evitando que ruídos sejam interpretados como transições de estado, como mostrado pela Figura 21.
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](img/filtro-rc.png)
+
+<figcaption style="text-align: center;">Figura 21 — Filtro capacitivo para remover ruídos de uma entrada digital</figcaption>
+</figure>
+
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="normal">
+
+### Entradas Digitais no Arduino — Exercício manuscrito valendo 1 ponto extra para a AV1
+
+1. Explique o que são e para que servem os resistores de pull-up e pull-down.
+2. Explique como usar os resistores pull-up internos do Arduino.
+3. Explique os problemas que podem ser ocasionados por uma entrada digital flutuante.
+4. Explique se é necessário ou não considerar os sinais de entrada invertidos ao usar resistores pull-up internos do Arduino.
+5. Explique como construir uma proteção contra ruídos externa à entrada digital com resistores pull-down.
+
+A entrega deverá ser efetuada digitalizada e em formato PDF no [Ambiente Virtual de Aprendizado](https://ava.cefetmg.br) da disciplina até a data limite lá estabelecida.
+
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="regular">
+
+### Saídas Digitais no Arduino
+
+- As saídas digitais do Arduino podem, virtualmente, controlar quaisquer tipos de dispositivos atuadores, cada qual com suas particularidades.
+- Se a corrente necessária para acionamento do atuador for baixa, o Arduino pode controlá-lo diretamente.
+    - Uma gama muito restrita de atuadores — elementos de carga — podem ser controlados diretamente, como LEDs, *shields* e módulos periféricos do arduino. A Figura 22 mostra um diagrama genérico para controle de elementos de carga de baixa corrente pelo Arduino.
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/generic_low_load_element.png)
+
+<figcaption style="text-align: center;">Figura 22 - Diagrama genérico para controle de elementos de carga de baixa corrente pelo Arduino.</figcaption>
+</figure>
+
+- Ao observar a Figura 22, verifica-se que a conexão do pino do Arduino, passando pelo resistor de proteção de \\(330 \\Omega\\) e pelo elemento de carga, é conectada ao terra. O que isso implica?
+    - Isso implica que para acionar o elemento de carga deve-se escrever o nível lógico alto no pino do Arduino. Isso é feito com a função `digitalWrite(pino, HIGH);`.
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="regular">
+
+### Saídas Digitais no Arduino
+
+Se for necessário acionar um elemento de carga ou qualquer outro periférico conectado ao Arduino com um nível lógico BAIXO, como proceder? A Figura 23 mostra como realizar:
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/generic_low_load_element_low_level.png)
+
+<figcaption style="text-align: center;">Figura 23 - Acionamento de um LED atravérs do nível lógico BAIXO.</figcaption>
+</figure>
+
+Ao ver a Figura 23 é possível observar que existe uma conexão de um elemento de nível lógico ALTO (+5V) passando por um resistor de proteção de \\(330 \\Omega\\) e um LED até chegar à porta de saída `PIN 1` do Arduino.
+
+- Se for escrito na porta de saída `PIN 1` o nível lógico ALTO (+5V), então, não existirá diferencial de potencial entre `PIN 1` e o terminal `5V`. Se não existe diferencial de potencial, logo, não existirá corrente elétrica circulando pelo circuito. Portanto, o LED não acenderá.
+- Agora, se for escrito na porta de saída `PIN 1` o nível lógico BAIXO (0V), então, existirá um diferencial de potencial de \\(5V\\) entre `PIN 1` e o terminal `5V` fazendo com que a corrente elétrica circule pelo circuito e, portanto, acendendo o LED.
+
+</div>
 
 
 ---

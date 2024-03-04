@@ -159,6 +159,7 @@
 
   .column-container {
     flex: 1;
+    padding: 5px;
   }
 
   .column-row-container {
