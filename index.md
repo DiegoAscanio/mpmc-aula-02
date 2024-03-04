@@ -514,10 +514,118 @@ Figura 8 — Entradas e saídas do Arduino UNO com suas principais funções.
 
 <div class="normal">
 
-- É recomendado na disciplina utilizar a IDE oficial do Arduino para a programação dos microcontroladores. Esta IDE está disponível no container de aulas do professor da disciplina. 
+- É recomendado na disciplina utilizar a IDE oficial do Arduino para a programação dos microcontroladores — Apenas UPLOAD dos códigos. Esta IDE está disponível no container de aulas do professor da disciplina. 
     - Utilizar este container permite garantir que todos os alunos estão utilizando a mesma versão do ambiente de desenvolvimento, evitando problemas de compatibilidade entre diferentes versões do software e portanto, garantindo a reprodutibilidade dos experimentos.
         - As instruções apropriadas para execução deste container estão disponíveis em seu [repositório](https://github.com/diegoascanio/container-aulas-cefetmg).
     - Caso o aluno deseje apenas instalar a IDE do Arduino em seu computador, acesse o [site oficial](https://www.arduino.cc/en/software) e siga as instruções de instalação para o seu sistema operacional.
     - Também é facultado ao aluno utilizar outras ferramentas de sua preferência, entretanto, não é garantido nenhum suporte para problemas de compatibilidade que possam surgir.
 
+</div>
+
+
+---
+
+## Introdução ao Arduino — Ambiente de Desenvolvimento
+
+<div class="regular flex-container">
+<div class="column-container">
+
+- A IDE oficial do Arduino dispõe de um editor de texto, um compilador, um gravador de firmware, monitor serial, gerenciador de bibliotecas, ferramentas de depuração, exemplos de código e muitos outros recursos.
+- O upload do firmware para a placa é feito através de um cabo USB, que também é usado para alimentar a placa. Além disso, pelo mesmo cabo é possível monitorar o funcionamento da placa através de comunicação serial, bem como, construir gráficos de dados numéricos enviados pela placa em tempo real.
+- A Figura 12 mostra um código de exemplo carregado no Arduino IDE que faz a placa enviar sequencialmente e em loop, todos os caracteres da tabela ASCII pela comunicação serial.
+
+</div>
+<div class="column-container">
+<figure>
+
+<!-- _class: transparent -->
+![grid-img-75](./img/arduino-ide-ascii.png)
+
+<figcaption style="text-align: center;">Figura 12 - Arduino IDE com o programa ASCIITable</figcaption>
+</figure>
+</div>
+</div>
+
+
+---
+
+## Introdução ao Arduino — Uso da IDE
+### Pré requisitos
+
+<div class="small">
+
+1. No linux, além de ter a IDE do Arduino instalada, é necessário adicionar o usuário ao grupo `dialout` e / ou `tty` (a depender da distro) para que o usuário tenha permissão de acesso à porta serial. Para isso, execute o comando `sudo usermod -a -G [GRUPO] $USER` e faça logout e login novamente, onde `[GRUPO]` é o nome do respectivo grupo (`tty` ou `dialout`) que permite o acesso à porta serial na sua distro.
+
+2. Feito isso, conecte o Arduino UNO à porta USB do computador e verifique se o sistema reconheceu a placa. Para isso, execute o comando `dmesg | grep tty` e verifique se a placa foi reconhecida. Se sim, a saída do comando será algo como `/dev/ttyACM0` ou `/dev/ttyUSB0`.
+
+3. Se utilizar o container da disciplina — o que torna dispensável a instalação do Arduino IDE em seu Host — adicione também seu usuário ao grupo `docker` para que o usuário tenha permissão de acesso à porta serial. Para isso, execute o comando `sudo usermod -a -G docker $USER` e faça logout e login novamente.
+
+4. Inicie o container da disciplina com o comando `docker run -it --rm -p 6080:6080 -v ~/container-aulas-cefetmg:/container-aulas-cefetmg --ulimit nofile=65536:65536 --device /dev/ttyUSB0:/dev/ttyUSB0 diegoascanio/cefetmg:container-aulas`. Se a placa estiver identificada como `/dev/ttyACM0`, substitua as ocorrências de `/dev/ttyUSB0` por `/dev/ttyACM0` no comando.
+
+</div>
+
+
+---
+
+## Introdução ao Arduino — Uso da IDE
+### Pré requisitos
+
+<div class="normal">
+
+<div class="grid-75-25">
+<div class="grid-element">
+
+5. Iniciado o container da disciplina, abra o endereço [http://localhost:6080](http://localhost:6080) no navegador de sua preferência para acessar a interface gráfica do container e clique em `Connect` como mostra a Figura 13.
+6. Em seguida, clique com o botão direito do mouse em qualquer parte da tela preta para abrir o menu de aplicativos do container. Em seguida, navegue até `Development` e clique em `Arduino IDE` para abrir a IDE do Arduino, como mostra a Figura 14.
+
+</div>
+<div class="grid-element">
+<figure>
+
+![](./img/novnc.png)
+
+<figcaption class="footnotesize" style="text-align: center;">Figura 13 — Tela Inicial do Container</figcaption>
+</figure>
+<figure>
+
+<!-- _class: transparent -->
+![](./img/openbox.png)
+
+<figcaption class="footnotesize" style="text-align: center;">Figura 14 — Acesso ao Arduino IDE</figcaption>
+</figure>
+
+</div>
+</div>
+</div>
+
+
+---
+
+## Introdução ao Arduino — Uso da IDE
+### Pré requisitos
+
+<div class="grid-50-50">
+<div class="grid-element normal">
+
+7. Se você estiver usando o Arduino UNO, pode passar diretamente ao passo 8. Se for o Arduino nano ATmega168 (Arduino nano vermelho) siga os passos a seguir:
+    1. No Arduino IDE clique em `Tools`, depois em `Board` e selecione `Arduino Nano`, como mostra a Figura 15.
+    2. Em seguida, clique novamente em `Tools`, depois em `Processor` e selecione `ATmega168`, como mostra a Figura 16.
+
+</div>
+<div class="grid-element footnotesize">
+<figure>
+
+<!-- _class: transparent -->
+![img-grid-75](./img/select-nano-168.png)
+
+<figcaption style="text-align: center;">Figura 15 - Seleção do Arduino Nano</figcaption>
+</figure>
+<figure>
+
+<!-- _class: transparent -->
+![img-grid-75](./img/nano-168-processor.png)
+
+<figcaption style="text-align: center;">Figura 16 - Seleção do Processador ATmega168</figcaption>
+</figure>
+</div>
 </div>
