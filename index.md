@@ -77,7 +77,7 @@
     text-align: justify;
     font-size: 18px;
   }
-  section.lead h1, h2, h3 {
+  section.lead h1, h2, h3, h4 {
     text-align: center;
   }
   
@@ -120,6 +120,12 @@
   img[alt=grid-img] {
     display: block;
     width: 100%;
+  }
+
+  img[alt=grid-img-35] {
+    display: block;
+    margin: auto;
+    width: 35%;
   }
 
   img[alt=grid-img-50] {
@@ -1034,6 +1040,151 @@ Ao ver a Figura 23 é possível observar que existe uma conexão de um elemento 
 - Se for escrito na porta de saída `PIN 1` o nível lógico ALTO (+5V), então, não existirá diferencial de potencial entre `PIN 1` e o terminal `5V`. Se não existe diferencial de potencial, logo, não existirá corrente elétrica circulando pelo circuito. Portanto, o LED não acenderá.
 - Agora, se for escrito na porta de saída `PIN 1` o nível lógico BAIXO (0V), então, existirá um diferencial de potencial de \\(5V\\) entre `PIN 1` e o terminal `5V` fazendo com que a corrente elétrica circule pelo circuito e, portanto, acendendo o LED.
 
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="regular">
+
+### Saídas Digitais no Arduino - LEDs
+
+- LEDs são diodos emissores de luz que emitem luz quando uma corrente elétrica circula entre seu ânodo (A) e cátodo (K).
+    - Diodos são componentes eletrônicos que permitem a passagem de corrente elétrica em um único sentido, do ânodo para o cátodo.
+    - O ânodo é o terminal positivo e o cátodo é o terminal negativo de um LED e por consequência, de um diodo.
+- Por serem dispositivos fundamentais em eletrônica, os LEDs são muito utilizados em circuitos eletrônicos para indicar o estado de um sistema, como por exemplo, se um dispositivo está ligado ou desligado e se necessitamos conhecer os estados de determinado sistema, os LEDs são escolhas naturais para esta tarefa.
+- O ânodo de um LED, seu polo positivo, é seu terminal (perna) mais longo(a) e o cátodo, seu polo negativo, é seu terminal (perna) mais curto(a), como ilustrado pela figura 24:
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/led.png)
+
+<figcaption class="footnotesize" style="text-align: center;">Figura 24 — Cátodo (terminal negativo) de um LED, representado pela letra K e Ânodo (terminal positivo) de um LED representado pela letra A</figcaption>
+</figure>
+
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="regular">
+
+### Saídas Digitais no Arduino - Acionamento de cargas genéricas de correntes intermediárias e elevadas.
+
+- Para todas as cargas que demandam correntes maiores do que o microcontrolador pode fornecer, é necessário usar um circuito auxiliar composto de fonte de alimentação para a carga, resistor limitador de corrente para a base do transistor, diodo para proteção do circuito contra descargas, transistor (para atuar como chave digital) e referencial comum de tensão (GND), como ilustrado pela Figura 25.
+
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/acionamento-generico.png)
+
+<figcaption class="footnotesize" style="text-align: center;">Figura 25 — Circuito genérico para acionamento de cargas que demandem correntes maiores do que o microcontrolador consegue fornecer</figcaption>
+</figure>
+
+A corrente da carga determina quais tipos de resistor e transistor devem ser utilizados. Nos próximos *slides* serão apresentados circuitos para acionamento de cargas elevadas construídos sobre o modelo genérico da Figura 25.
+
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="regular">
+
+### Saídas Digitais no Arduino - Acionamento de cargas genéricas de correntes intermediárias e elevadas.
+
+<div class="flex-container scriptsize">
+<div class="column-container">
+
+#### Acionamento de relés.
+
+<figure>
+
+<!-- _class: transparent -->
+![grid-img-35](./img/reles.png)
+
+<figcaption style="text-align: center;">Figura 26 — Acionamento de Relé com transistor BC548</figcaption>
+</figure>
+</div>
+<div class="column-container">
+
+#### Acionamento de motor CC
+
+<figure>
+
+<!-- _class: transparent -->
+![grid-img-35](./img/motor-mosfet.png)
+
+<figcaption style="text-align: center;">Figura 27 — Acionamento de Motor CC com mosfet IRF530</figcaption>
+</figure>
+</div>
+</div>
+<div class="flex-container scriptsize">
+<div class="column-container">
+
+#### Acionamento de motores de corrente contínua com reversão de direção.
+
+<figure>
+
+<!-- _class: transparent -->
+![grid-img-35](./img/motor-cc-com-reversao.png)
+
+<figcaption style="text-align: center;">Figura 28 — Conexão de motores CC com reversão</figcaption>
+</figure>
+</div>
+<div class="column-container">
+
+#### Acionamento de Lâmpadas
+<div class="mid-aligned-container">
+<figure>
+
+<!-- _class: transparent -->
+![grid-img-35](./img/lampada.png)
+
+<figcaption style="text-align: center;">Figura 29 — Acionamento de Lâmpadas de Sinalização</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="regular">
+
+### Saídas Digitais no Arduino - Acionamento de cargas genéricas de correntes intermediárias e elevadas.
+#### Acionamento de Pequenos Motores
+
+O acionamento de pequenos motores, como mostrado pela Figura 29, exige certos cuidados especiais, como a adição de um capacitor de \\(220nF\\) em paralelo ao motor para filtrar ruídos emitidos pelo motor que interferem no circuito, como mostrado pela Figura 30.
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/pequeno-motor.png)
+
+<figcaption style="text-align: center;">Figura 29 — Circuito para acionamento de pequenos motores</figcaption>
+</figure>
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/pequeno-motor-capacitor.png)
+
+<figcaption style="text-align: center;">
+
+Figura 30 — Capacitor cerâmico de \\(220nF\\) em parelelo ao pequeno motor.
+
+</figcaption>
+</figure>
 </div>
 
 
