@@ -1166,7 +1166,9 @@ A corrente da carga determina quais tipos de resistor e transistor devem ser uti
 #### Acionamento de Pequenos Motores
 
 O acionamento de pequenos motores, como mostrado pela Figura 29, exige certos cuidados especiais, como a adição de um capacitor de \\(220nF\\) em paralelo ao motor para filtrar ruídos emitidos pelo motor que interferem no circuito, como mostrado pela Figura 30.
-
+</div>
+<div class="flex-container small">
+<div class="column-container">
 <figure>
 
 <!-- _class: transparent -->
@@ -1174,6 +1176,8 @@ O acionamento de pequenos motores, como mostrado pela Figura 29, exige certos cu
 
 <figcaption style="text-align: center;">Figura 29 — Circuito para acionamento de pequenos motores</figcaption>
 </figure>
+</div>
+<div class="column-container">
 <figure>
 
 <!-- _class: transparent -->
@@ -1185,6 +1189,94 @@ Figura 30 — Capacitor cerâmico de \\(220nF\\) em parelelo ao pequeno motor.
 
 </figcaption>
 </figure>
+</div>
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+### Conexão de Motores de Passo
+
+<div class="footnotesize">
+
+Motores de passo são motores que giram em pequenos ângulos apropriados para aplicações que necessitem de precisão nos movimentos. Exemplo: impressoras 3D, CNC, robôs, etc.
+
+Os giros de pequenos ângulos são realizados em passos (daí seu nome) emitidos por meio de pulsos elétricos enviados para o motor. Estes motres dispõem de 4 bobinas que são acionadas em sequência para que o motor gire com a precisão desejada. Destarte, para controlar um motor de passo, é necessário enviar pulsos elétricos para cada uma das bobinas de seu comando. Como estas bobinas podem exigir uma quantidade de corrente maior do que o Arduino pode oferecer, é necessário a utilização de 4 transistores de comando para acionar a bobina do motor ou um driver específico para motores de passo.
+
+A Figura 31 ilustra um diagrama de conexão de motor de passo para cada uma de suas bobinas baseada no modelo genérico de acionamento de cargas.
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/stepper.png)
+
+<figcaption style="text-align: center">
+Figura 31 — Diagrama de conexão de motor de passo para cada uma de suas bobinas
+</figcaption>
+</figure>
+
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+
+<div class="flex-container small">
+<div class="column-container">
+
+### Conexão com display de 7 segmentos
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/7seg.png)
+
+<figcaption style="text-align: center;">Figura 32 — Diagrama de conexão com display de 7 segmentos</figcaption>
+</figure>
+
+</div>
+<div class="column-container">
+
+### Conexão com driver ULN2003.
+
+O ULN2003 é um circuito integrado que permite controlar até 7 dispositivos de alta corrente com um microcontrolador, implementando em si circuitos baseados no modelo genérico para acionamento de altas cargas, como ilustrado pela Figura 33.
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/uln2003.png)
+
+<figcaption style="text-align: center;">Figura 33 — Diagrama de conexão com driver ULN2003</figcaption>
+</figure>
+</div>
+</div>
+
+
+---
+
+## Entradas e Saídas Digitais
+### *Shields* e Módulos de Entrada e Saída para o Arduino
+
+<div class="small">
+
+Por fim, para facilitar a prototipagem e construção de projetos com o Arduino, diversos fabricantes de componentes eletrônicos desenvolveram *shields* e módulos de entrada e saída para o Arduino que retiram do desenvolvedor a responsabilidade de construir circuitos para o acionamento de cargas.
+
+A Figura 34 mostra alguns *shields* compatíveis com o Arduino UNO.
+
+<figure>
+
+<!-- _class: transparent -->
+![centered-img](./img/shields.png)
+
+<figcaption style="text-align: center;">
+
+Figura 34 - *Shields* compatíveis com o Arduino UNO.
+
+</figcaption>
+</figure>
+
 </div>
 
 
