@@ -1282,6 +1282,21 @@ Figura 34 - *Shields* compatíveis com o Arduino UNO.
 
 ---
 
+## Entradas e Saídas Digitais — Resumo Essencial da Operação de Entradas e Saídas Digitais
+
+<div class="regular">
+
+Para configurar o modo dos pinos no arduino dentro da função `setup()`: `pinMode(pino, modo);` onde `pino` é o número do pino e `modo` é `INPUT`, `INPUT_PULLUP` ou `OUTPUT`.
+
+Para ler o estado de um pino digital: `digitalRead(pino);` onde `pino` é o número do pino armazenado ou não em uma variável.
+
+Para escrever um estado em um pino digital: `digitalWrite(pino, estado);` onde `pino` é o número do pino e `estado` é `HIGH` ou `LOW`.
+
+</div>
+
+
+---
+
 ## Referências Bibliográficas
 
 <a name="referencias"></a>
